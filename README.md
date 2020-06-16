@@ -1,19 +1,17 @@
+### 本项目使用了vue-cli 和echarts可视化视图
+
+#### 数据在repositories(仓库) 下的express-covid-19中
+
 # covid-data
 
-## Project setup
+## Project setup(加载依赖包)
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development(启动vue项目)
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
