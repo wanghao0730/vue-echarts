@@ -44,7 +44,6 @@ export default {
   watch: {
     worldSeriesData: {
       handler() {
-        console.log(makeMapData(this.geoMap, this.worldSeriesData));
         let that = this;
         this.myChart.setOption({
           series: [

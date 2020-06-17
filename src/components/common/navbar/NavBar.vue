@@ -1,21 +1,35 @@
 <template>
   <div class="top-navbar">
-    <ul>
-      <li>
-        <router-link :to="{path:'index'}">中国疫情</router-link>
-      </li>
-      <li>
-        <router-link :to="{path:'world'}">世界疫情</router-link>
-      </li>
-    </ul>
+    <nav-bar-item link="/index">
+      <strong slot="title">国内疫情</strong>
+    </nav-bar-item>
+    <nav-bar-item link="/world">
+      <strong slot="title">国外疫情</strong>
+    </nav-bar-item>
+    <main-login>
+      <nav-bar-item link="/login">
+        <strong slot="title">登录</strong>
+      </nav-bar-item>
+      <nav-bar-item link="/register">
+        <strong slot="title">注册</strong>
+      </nav-bar-item>
+    </main-login>
   </div>
 </template>
 
 <script>
+import MainLogin from "common/mainLogin/MainLogin";
+import NavBarItem from "common/navbar/childComps/NavBarItem";
 export default {
   name: "NavBar",
+  components: {
+    NavBarItem,
+    MainLogin
+  },
   data() {
-    return {};
+    return {
+      isActive: true
+    };
   }
 };
 </script>
@@ -36,6 +50,12 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
+}
+.active {
+  color: deeppink;
+}
+strong {
   cursor: pointer;
 }
 </style>

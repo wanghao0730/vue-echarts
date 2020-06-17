@@ -61,7 +61,7 @@ export let option = {
     inRange: {
       color: ['rgba(227,231,243,0.2)', 'rgba(233,161,136,0.3)', 'rgba(230,154,141,0.8)', 'red'],
     },
-    hoverLink: true
+    hoverLink: true,
   }],
   series: []
 }
