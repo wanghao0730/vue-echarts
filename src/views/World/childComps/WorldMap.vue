@@ -6,7 +6,7 @@
 
 <script>
 import geoCoorMap from "option/_world/map/data/geoMap";
-import makeMapData from "option/_world/map/work/makeMapData";
+import makeMapData from "@/work/makeMapData";
 import option from "option/_world/map/option";
 
 export default {
@@ -55,7 +55,7 @@ export default {
               //! makeMapData是自己封装的函数 会返回一个数组 数组中记录国家的名称坐标和感染人数
               data: makeMapData(this.geoMap, this.worldSeriesData),
               symbolSize: function(val) {
-                return 10;
+                return val[2] > 10000 ? 45 : 12;
               },
               label: {
                 normal: {
