@@ -38,7 +38,7 @@ export default {
     submitLogin() {
       axios({
         method: "post",
-        url: "api/login/user",
+        url: "api/sing/register",
         //! 携带json数据用data携带
         data: {
           userName: this.userName.trim(),
@@ -74,12 +74,12 @@ export default {
 .control-form {
   width: 35%;
   background: #00000090;
-  padding: 20px 20px;
+  padding: 50px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .control-form h1 {
   color: #fff;
@@ -114,8 +114,9 @@ export default {
   padding: 10px;
   border-radius: 30px;
   font-weight: 600;
-  border-color: darkslateblue;
   outline: none;
+  animation: inputBorder 5s linear infinite;
+  border-width: 3px;
 }
 .control-form .item #submit:hover {
   background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);

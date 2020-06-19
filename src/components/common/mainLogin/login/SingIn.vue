@@ -9,7 +9,7 @@
         <input type="password" required placeholder="密码" name="userPwd" v-model="userPwd" />
       </div>
       <div class="waring-login" v-if="showWaring">
-        <strong>当前用户不存在,请先注册后登录</strong>
+        <strong>{{ waringMsg }}</strong>
       </div>
       <div class="item">
         <button type="input" id="submit" @click="submitLogin">登录</button>
@@ -28,34 +28,42 @@ export default {
       userName: "",
       userPwd: "",
       //! 是否显示登录错误信息
-      showWaring: false
+      showWaring: false,
+      waringMsg: null
     };
   },
   methods: {
     submitLogin() {
-      axios({
-        method: "post",
-        url: "api/user/login",
-        //! 携带json数据用data携带
-        data: {
-          userName: this.userName.trim(),
-          userPwd: this.userPwd.trim()
-        }
-      })
-        .then(res => {
-          if (res.data.length <= 0) {
-            this.showWaring = true;
-          } else {
-            //! 存在数据隐藏提示
-            this.showWaring = false;
-            console.log(res);
+      //! 判断用户输入内容是否为空
+      if (this.userName.trim() !== "" && this.userPwd.trim() !== "") {
+        axios({
+          method: "post",
+          url: "api/user/login",
+          //! 携带json数据用data携带
+          data: {
+            userName: this.userName,
+            userPwd: this.userPwd
           }
         })
-        .catch(err => {
-          if (err) {
-            throw err;
-          }
-        });
+          .then(res => {
+            //! 判断后端返回的状态码和有没有错误信息
+            if (res.data.code === 422) {
+              this.showWaring = true;
+              this.waringMsg = res.data.sqlMsg;
+            } else if (res.data.code === 200) {
+              //! 表示登录成功了 跳转路由界面
+              this.$router.push({ path: "/index" });
+            }
+          })
+          .catch(err => {
+            if (err) {
+              throw err;
+            }
+          });
+      } else {
+        //!  提示内容不能为空
+        (this.showWaring = true), (this.waringMsg = "输入内容不能为空");
+      }
     }
   }
 };
@@ -75,16 +83,16 @@ export default {
 .control-form {
   width: 35%;
   background: #00000090;
-  padding: 20px 20px;
+  padding: 50px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .control-form h1 {
   color: #fff;
-  letter-spacing: 6px;
+  letter-spacing: 3px;
 }
 .control-form .item {
   margin-top: 25px;
@@ -121,8 +129,8 @@ export default {
   padding: 10px;
   border-radius: 30px;
   font-weight: 600;
-  border-color: darkslateblue;
   outline: none;
+  animation: inputBorder 5s linear infinite;
 }
 .control-form .item #submit:hover {
   background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);

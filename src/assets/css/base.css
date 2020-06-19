@@ -16,3 +16,21 @@ a {
 li {
   list-style: none;
 }
+/* 颜色特效 */
+@keyframes inputBorder {
+  0% {
+    border-color: #ff9569;
+  }
+  25% {
+    border-color: pink;
+  }
+  50% {
+    border-color: #43e97b;
+  }
+  75% {
+    border-color: deeppink;
+  }
+  100% {
+    border-color: #38f9d7;
+  }
+}

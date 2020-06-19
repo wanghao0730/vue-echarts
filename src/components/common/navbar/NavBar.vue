@@ -6,6 +6,9 @@
     <nav-bar-item link="/world">
       <strong slot="title">国外疫情</strong>
     </nav-bar-item>
+    <nav-bar-item link="/detail">
+      <strong slot="title">详情数据</strong>
+    </nav-bar-item>
     <main-login>
       <nav-bar-item link="/login">
         <strong slot="title">登录</strong>
