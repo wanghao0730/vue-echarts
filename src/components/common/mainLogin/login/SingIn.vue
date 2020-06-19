@@ -3,10 +3,13 @@
     <div class="control-form">
       <h1>登录</h1>
       <div class="item">
-        <input type="text" placeholder="账户" name="userName" v-model="userName" />
+        <input type="text" required placeholder="账户" name="userName" v-model="userName" />
       </div>
       <div class="item">
-        <input type="password" placeholder="密码" name="userPwd" v-model="userPwd" />
+        <input type="password" required placeholder="密码" name="userPwd" v-model="userPwd" />
+      </div>
+      <div class="waring-login" v-if="showWaring">
+        <strong>当前用户不存在,请先注册后登录</strong>
       </div>
       <div class="item">
         <button type="input" id="submit" @click="submitLogin">登录</button>
@@ -23,25 +26,30 @@ export default {
   data() {
     return {
       userName: "",
-      userPwd: ""
+      userPwd: "",
+      //! 是否显示登录错误信息
+      showWaring: false
     };
   },
   methods: {
     submitLogin() {
       axios({
-        type: "post",
-        url: "api/login",
-        headers: {
-          //请求头设置为表单提交的请求头
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        params: {
-          userName: this.userName,
-          userPwd: this.userPwd
+        method: "post",
+        url: "api/user/login",
+        //! 携带json数据用data携带
+        data: {
+          userName: this.userName.trim(),
+          userPwd: this.userPwd.trim()
         }
       })
         .then(res => {
-          console.log(res);
+          if (res.data.length <= 0) {
+            this.showWaring = true;
+          } else {
+            //! 存在数据隐藏提示
+            this.showWaring = false;
+            console.log(res);
+          }
         })
         .catch(err => {
           if (err) {
@@ -81,7 +89,7 @@ export default {
 .control-form .item {
   margin-top: 25px;
 }
-.control-form .item input {
+.control-form .item > input {
   width: 250px;
   padding: 10px;
   border-radius: 30px;
@@ -100,6 +108,12 @@ export default {
   background: #00000090;
   color: white;
   text-align: center;
+  cursor: pointer;
+}
+.control-form .waring-login {
+  font-size: 18px;
+  color: white;
+  margin-top: 25px;
   cursor: pointer;
 }
 .control-form .item input:hover {

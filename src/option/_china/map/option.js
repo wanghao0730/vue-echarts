@@ -62,6 +62,10 @@ export let option = {
       color: ['rgba(227,231,243,0.2)', 'rgba(233,161,136,0.3)', 'rgba(230,154,141,0.8)', 'red'],
     },
     hoverLink: true,
+    textStyle: {
+      color: 'white',
+      fontSize: 17
+    }
   }],
   series: []
 }
