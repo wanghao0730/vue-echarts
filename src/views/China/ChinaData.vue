@@ -19,11 +19,11 @@ export default {
   data() {
     return {
       //! 请求数据传递给子组件
-      chinaSeriesData: []
+      chinaSeriesData: [],
+      chinaCityData: []
     };
   },
   created() {},
-
   mounted() {
     this.getData();
   },
@@ -32,6 +32,8 @@ export default {
     getData() {
       axios("api/cdata").then(res => {
         const data = res.data; //! 对数据进行过滤成我要的
+        //! 带有中国城市的数据
+        this.chinaCityData = data.getAreaStat;
         //! seriesData记录过滤后的数据
         data.getAreaStat.forEach(item => {
           //! 过滤数据 放入areaStat数组
@@ -52,6 +54,9 @@ export default {
         });
       });
     }
+  },
+  deactivated() {
+    this.$bus.$emit("areaData", this.chinaCityData);
   }
 };
 </script>

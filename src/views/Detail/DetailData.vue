@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import detailMsg from "views/Detail/childComps/DetailMsg";
 export default {
   name: "DetailData",
@@ -18,20 +17,17 @@ export default {
     };
   },
   created() {
-    this.detailMsg();
+    this.$bus.$on("areaData", res => {
+      this.areaStat = res;
+    });
   },
-  methods: {
-    detailMsg() {
-      axios("api/detail")
-        .then(res => {
-          //! 过滤数据
-          this.areaStat = res.data.getAreaStat;
-        })
-        .catch(err => {
-          if (err) throw err;
-        });
-    }
-  }
+  deactivated() {
+    //! 清除事件总线
+    this.$bus.$off("areaData");
+  },
+  mounted() {},
+  activated() {},
+  methods: {}
 };
 </script>
 

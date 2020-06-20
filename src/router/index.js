@@ -28,21 +28,21 @@ const routes = [
   {
     path: '/detail',
     component: () => import('views/Detail/DetailData'),
-    // children: [
-    //   {
-    //     path: 'allMsg',
-    //     component: () => import('views/Detail/childComps/DetailMsg')
-    //   },
-    //   {
-    //     path: 'areaMsg',
-    //     component: () => import('views/Detail/childComps/DetailAreaMsg')
-    //   }
-    // ]
+    children: [
+      {
+        path: '/allMsg',
+        component: () => import('views/Detail/childComps/DetailMsg')
+      },
+      {
+        path: '/areaMsg',
+        component: () => import('views/Detail/childComps/DetailAreaMsg')
+      }
+    ]
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('common/mainLogin/login/SingIn')
+    component: () => import('common/mainLogin/login/SingIn'),
   },
   {
     path: '/register',
