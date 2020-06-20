@@ -5,9 +5,8 @@
 body {
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
   overflow-x: hidden;
-
 } 
 a {
   text-decoration: none;
@@ -20,17 +19,21 @@ li {
 @keyframes inputBorder {
   0% {
     border-color: #ff9569;
+    box-shadow:0000rgba(255,255,255,0.4);
   }
   25% {
     border-color: pink;
+   
   }
   50% {
     border-color: #43e97b;
   }
   75% {
     border-color: deeppink;
+  
   }
   100% {
     border-color: #38f9d7;
+    box-shadow:00020pxrgba(255,255,255,0);
   }
 }

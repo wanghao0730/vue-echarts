@@ -17,12 +17,27 @@ const routes = [
   {
     path: '/index',
     name: 'index',
+    //! 路由懒加载
     component: () => import('views/China/ChinaData')
   },
   {
     path: '/world',
     name: 'world',
     component: () => import('views/World/WorldData')
+  },
+  {
+    path: '/detail',
+    component: () => import('views/Detail/DetailData'),
+    // children: [
+    //   {
+    //     path: 'allMsg',
+    //     component: () => import('views/Detail/childComps/DetailMsg')
+    //   },
+    //   {
+    //     path: 'areaMsg',
+    //     component: () => import('views/Detail/childComps/DetailAreaMsg')
+    //   }
+    // ]
   },
   {
     path: '/login',

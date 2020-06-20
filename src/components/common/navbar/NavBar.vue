@@ -46,6 +46,7 @@ export default {
   background: white;
   color: black;
   font-weight: 800;
+  border-bottom: 1px solid black;
 }
 .top-navbar > ul {
   width: 100%;
