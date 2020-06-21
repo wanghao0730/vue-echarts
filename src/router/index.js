@@ -26,15 +26,24 @@ const routes = [
     component: () => import('views/World/WorldData')
   },
   {
+    path: '/time',
+    name: 'time',
+    component: () => import('views/TimeService/TimeService')
+  },
+  {
     path: '/detail',
+    //! 重定向子路由
+    redirect: '/detail/allMsg',
     component: () => import('views/Detail/DetailData'),
     children: [
       {
-        path: '/allMsg',
+        path: 'allMsg',
+        name: 'allMsg',
         component: () => import('views/Detail/childComps/DetailMsg')
       },
       {
-        path: '/areaMsg',
+        path: 'areaMsg',
+        name: 'areaMsg',
         component: () => import('views/Detail/childComps/DetailAreaMsg')
       }
     ]

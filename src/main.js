@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import echarts from 'echarts';
 import router from './router/index'
+import store from './store/index'
 import 'echarts/map/js/china';
 import 'echarts/map/js/world';
 Vue.config.productionTip = false
@@ -13,5 +14,6 @@ Vue.prototype.$echarts = echarts;
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

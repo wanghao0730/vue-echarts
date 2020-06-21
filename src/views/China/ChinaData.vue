@@ -19,11 +19,12 @@ export default {
   data() {
     return {
       //! 请求数据传递给子组件
-      chinaSeriesData: [],
-      chinaCityData: []
+      chinaSeriesData: []
     };
   },
-  created() {},
+  created() {
+    this.$bus.$emit("areaData", this.chinaCityData);
+  },
   mounted() {
     this.getData();
   },

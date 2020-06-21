@@ -6,7 +6,10 @@
     <nav-bar-item link="/world">
       <strong slot="title">国外疫情</strong>
     </nav-bar-item>
-    <nav-bar-item link="/detail/allMsg">
+    <nav-bar-item link="/time">
+      <strong slot="title">实时播报</strong>
+    </nav-bar-item>
+    <nav-bar-item link="/detail">
       <strong slot="title">详情数据</strong>
     </nav-bar-item>
     <main-login>
@@ -43,10 +46,12 @@ export default {
   height: 60px;
   display: flex;
   font-size: 20px;
-  background: white;
-  color: black;
+  background: black;
+  color: whitesmoke;
   font-weight: 800;
   border-bottom: 1px solid black;
+  animation: backMove 5s linear 1s;
+  box-shadow: 3px 3px #fff;
 }
 .top-navbar > ul {
   width: 100%;
@@ -61,5 +66,15 @@ export default {
 }
 strong {
   cursor: pointer;
+}
+@keyframes backMove {
+  0% {
+    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+    color: black;
+  }
+  100% {
+    background: black;
+    color: whitesmoke;
+  }
 }
 </style>

@@ -1,32 +1,27 @@
 <template>
   <div class="detail-wrap">
-    <detail-msg :areaStat="areaStat"></detail-msg>
+    <keep-alive exclude="DetailAreaMsg">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import detailMsg from "views/Detail/childComps/DetailMsg";
+import DetailAreaMsg from "views/Detail/childComps/DetailAreaMsg";
+import DetailMsg from "views/Detail/childComps/DetailMsg";
 export default {
   name: "DetailData",
   components: {
-    detailMsg
+    DetailAreaMsg,
+    DetailMsg
   },
   data() {
-    return {
-      areaStat: []
-    };
+    return {};
   },
-  created() {
-    this.$bus.$on("areaData", res => {
-      this.areaStat = res;
-    });
-  },
-  deactivated() {
-    //! 清除事件总线
-    this.$bus.$off("areaData");
-  },
-  mounted() {},
+  created() {},
   activated() {},
+  mounted() {},
+
   methods: {}
 };
 </script>
