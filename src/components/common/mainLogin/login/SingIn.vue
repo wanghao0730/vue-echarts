@@ -3,7 +3,7 @@
     <div class="control-form">
       <h1>登录</h1>
       <div class="item">
-        <input type="text" required placeholder="账户" name="userName" v-model="userName" />
+        <input type="text" required placeholder="用户名" name="userName" v-model="userName" />
       </div>
       <div class="item">
         <input type="password" required placeholder="密码" name="userPwd" v-model="userPwd" />
@@ -51,6 +51,8 @@ export default {
               this.showWaring = true;
               this.waringMsg = res.data.sqlMsg;
             } else if (res.data.code === 200) {
+              //! 登录成功把数据传入vuex中保存登录状态
+              this.$store.commit("loginState", res.data.user);
               //! 表示登录成功了 跳转路由界面
               this.$router.push({ path: "/index" });
             }

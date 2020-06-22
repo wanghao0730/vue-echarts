@@ -5,6 +5,7 @@ import getters from './getters'
 Vue.use(Vuex);
 
 const state = {
+  user: '',
   cities: []
 };
 

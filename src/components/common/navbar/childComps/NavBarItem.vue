@@ -1,6 +1,7 @@
 <template>
   <div class="top-bar-item" @click="itemClck">
     <div :class="isActive">
+      <slot name="icon"></slot>
       <slot name="title"></slot>
     </div>
   </div>
@@ -38,6 +39,10 @@ export default {
 <style scoped>
 .top-bar-item {
   flex: 1;
+}
+.top-bar-item .icon {
+  width: 30px;
+  height: 30px;
 }
 .top-bar-item > div {
   width: 100%;

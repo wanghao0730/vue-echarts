@@ -6,13 +6,16 @@
     <nav-bar-item link="/world">
       <strong slot="title">国外疫情</strong>
     </nav-bar-item>
-    <nav-bar-item link="/time">
-      <strong slot="title">实时播报</strong>
-    </nav-bar-item>
     <nav-bar-item link="/detail">
       <strong slot="title">详情数据</strong>
     </nav-bar-item>
-    <main-login>
+    <nav-bar-item link="/time">
+      <strong slot="title">实时播报</strong>
+    </nav-bar-item>
+    <nav-bar-item link="/forum">
+      <strong slot="title">抗疫论坛</strong>
+    </nav-bar-item>
+    <main-login v-if="!userState">
       <nav-bar-item link="/login">
         <strong slot="title">登录</strong>
       </nav-bar-item>
@@ -20,6 +23,10 @@
         <strong slot="title">注册</strong>
       </nav-bar-item>
     </main-login>
+    <nav-bar-item link="/user" v-else>
+      <img src="~assets/image/user.png" slot="icon" class="userIcon" alt />
+      <strong slot="title">{{ userMsg }}</strong>
+    </nav-bar-item>
   </div>
 </template>
 
@@ -36,6 +43,14 @@ export default {
     return {
       isActive: true
     };
+  },
+  computed: {
+    userState() {
+      return this.$store.state.user !== "";
+    },
+    userMsg() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>
@@ -60,6 +75,11 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
+}
+.userIcon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 .active {
   color: deeppink;

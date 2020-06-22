@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <keep-alive>
+    <keep-alive exclude="SingUp">
       <router-view></router-view>
     </keep-alive>
   </div>

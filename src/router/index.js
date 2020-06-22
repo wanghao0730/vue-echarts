@@ -49,6 +49,11 @@ const routes = [
     ]
   },
   {
+    path: '/forum',
+    name: 'forum',
+    component: () => import('views/Forum/ForumData'),
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('common/mainLogin/login/SingIn'),
@@ -62,6 +67,10 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: 'history'
+})
+
+router.beforeEach((to, from, next) => {
+  next()
 })
 //! 导出
 export default router

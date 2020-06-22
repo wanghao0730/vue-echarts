@@ -3,7 +3,7 @@
     <div class="control-form">
       <h1>注册</h1>
       <div class="item">
-        <input type="text" required placeholder="账户" name="userName" v-model="userName" />
+        <input type="text" required placeholder="用户名" autofocus name="userName" v-model="userName" />
       </div>
       <div class="item">
         <input type="password" required placeholder="密码" name="userPwd" v-model="userPwd" />
@@ -13,6 +13,9 @@
       </div>
       <div class="item">
         <input type="text" required placeholder="手机号码" name="phone" v-model="phone" />
+      </div>
+      <div class="waring-login" v-if="showWaring">
+        <strong>{{ waringMsg }}</strong>
       </div>
       <div class="item">
         <button type="input" id="submit" @click="submitLogin">登录</button>
@@ -25,36 +28,54 @@
 import axios from "axios";
 // import request from "network/request";
 export default {
-  name: "SingIn",
+  name: "SingUp",
   data() {
     return {
       userName: "",
       userPwd: "",
       email: "",
-      phone: ""
+      phone: "",
+      //! 是否显示登录错误信息
+      showWaring: false,
+      waringMsg: null
     };
   },
   methods: {
     submitLogin() {
-      axios({
-        method: "post",
-        url: "api/sing/register",
-        //! 携带json数据用data携带
-        data: {
-          userName: this.userName.trim(),
-          userPwd: this.userPwd.trim(),
-          email: this.email.trim(),
-          phone: this.phone.trim()
-        }
-      })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          if (err) {
-            throw err;
+      if (this.userName.trim() !== "" && this.userPwd.trim() !== "") {
+        axios({
+          method: "post",
+          url: "api/sing/register",
+          //! 携带json数据用data携带
+          data: {
+            userName: this.userName.trim(),
+            userPwd: this.userPwd.trim(),
+            email: this.email.trim(),
+            phone: this.phone.trim()
           }
-        });
+        })
+          .then(res => {
+            //! 表示用户已经存在了
+            if (res.data.status_code === 422) {
+              this.showWaring = true;
+              this.waringMsg = res.data.sqlMsg;
+            } else if ((res.data.status_code = 200)) {
+              this.showWaring = true;
+              this.waringMsg = res.data.sqlMsg;
+              setTimeout(() => {
+                this.$router.push({ path: "login" });
+              }, 2000);
+            }
+          })
+          .catch(err => {
+            if (err) {
+              throw err;
+            }
+          });
+      } else {
+        //!  提示内容不能为空
+        (this.showWaring = true), (this.waringMsg = "输入内容不能为空");
+      }
     }
   }
 };
@@ -107,6 +128,12 @@ export default {
   background: #00000090;
   color: white;
   text-align: center;
+  cursor: pointer;
+}
+.control-form .waring-login {
+  font-size: 18px;
+  color: white;
+  margin-top: 25px;
   cursor: pointer;
 }
 .control-form .item input:hover {

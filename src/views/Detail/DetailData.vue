@@ -30,5 +30,6 @@ export default {
 .detail-wrap {
   width: 100%;
   height: 100%;
+  background: #ebebeb;
 }
 </style>
