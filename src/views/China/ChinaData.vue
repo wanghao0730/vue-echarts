@@ -22,9 +22,7 @@ export default {
       chinaSeriesData: []
     };
   },
-  created() {
-    this.$bus.$emit("areaData", this.chinaCityData);
-  },
+  created() {},
   mounted() {
     this.getData();
   },
@@ -57,7 +55,9 @@ export default {
     }
   },
   deactivated() {
-    this.$bus.$emit("areaData", this.chinaCityData);
+    setTimeout(() => {
+      this.$bus.$emit("areaData", this.chinaCityData);
+    }, 30);
   }
 };
 </script>

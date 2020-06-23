@@ -1,18 +1,27 @@
 <template>
-  <div class>抗疫论坛</div>
+  <div class="forum">
+    <keep-alive exclude="ForumDetail">
+      <router-view></router-view>
+    </keep-alive>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "ForumData",
   data() {
     return {};
   },
-  methods: {
-    name() {}
-  }
+  created() {},
+  methods: {}
 };
 </script>
 
-<style>
+<style scoped>
+.forum {
+  width: 100vw;
+  height: calc(100vh - 60px);
+  background: #f4f5f5;
+}
 </style>

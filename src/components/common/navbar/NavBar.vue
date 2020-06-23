@@ -23,7 +23,7 @@
         <strong slot="title">注册</strong>
       </nav-bar-item>
     </main-login>
-    <nav-bar-item link="/user" v-else>
+    <nav-bar-item v-else>
       <img src="~assets/image/user.png" slot="icon" class="userIcon" alt />
       <strong slot="title">{{ userMsg }}</strong>
     </nav-bar-item>

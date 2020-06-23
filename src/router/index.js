@@ -51,7 +51,18 @@ const routes = [
   {
     path: '/forum',
     name: 'forum',
+    redirect: '/forum/',
     component: () => import('views/Forum/ForumData'),
+    children: [
+      {
+        path: '/',
+        component: () => import('views/Forum/childComps/ForumMsg'),
+      },
+      {
+        path: 'forumDetail',
+        component: () => import('views/Forum/childComps/ForumDetail'),
+      }
+    ]
   },
   {
     path: '/login',
